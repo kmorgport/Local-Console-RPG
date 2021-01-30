@@ -7,9 +7,8 @@ public class Hero {
     private static int money;
 
 
-    public Hero(int health, String name, int attack, int defense, int magic){
+    public Hero(int health, int attack, int defense, int magic){
         this.health = health;
-        this.name = name;
         this.attack = attack;
         this.defense = defense;
         this.magic = magic;
@@ -38,6 +37,10 @@ public class Hero {
 
     public String getName(){
         return this.name;
+    }
+
+    public static void setName(String name){
+        this.name = name;
     }
 
     public int getAttack(){

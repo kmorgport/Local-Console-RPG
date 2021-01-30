@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class gameplay {
     private Scanner input = new Scanner(System.in);
     private String answer = input.nextLine();
-    private Hero hero = new Hero(30, "Kole", 3, 3, 10);
+    private Hero hero = new Hero(30, 3, 3, 10);
     private Monster mehlpie = new Monster(30, "Mehlpie", 3, 3, 5);
     public int playerhealth = hero.getHealth();
     public int playerAttack = hero.getAttack();
@@ -12,10 +12,28 @@ public class gameplay {
     public String enemeyName = mehlpie.getName();
 //    public int playerMoney = hero.getMoney();
 
+    public void askNameQuestion(){
+
+        System.out.println("What is your name?");
+        String answer = input.nextLine();
+        if(answer.length() <= 0) { //check for empty string or it will crash
+            clearConsole();
+            System.out.println("No name?");
+            askNameQuestion(); //recursion
+        }
+        Hero.setName(answer);
+        System.out.println("Your name is : " + answer);
+    }
+
+
+    public void spawnMonster(){
+        playerTurn();
+    }
+
     public void monsterTurn(){
         if(enemyHealth<=0){
             System.err.println("The monster has been defeated!");
-//            moneyReward();
+            moneyRewards();
 //            spawnMonster()
         }
 
@@ -75,10 +93,20 @@ public class gameplay {
         System.out.println("You have "+money+" gold.");
 
     }
+//
+//    public static void displayStats(){
+//
+//        System.out.println("You have " + pHealth + " health left.");
+//    }
 
+    public final  void clearConsole(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
     public static void main(String[] args) {
 
     }
+
 
 }
