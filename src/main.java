@@ -13,23 +13,6 @@ class Main{
     private static int defstat;
     private static int mana;
 
-    static class Monster{
-        private int health;
-        private String name;
-        private int attackStat;
-        private int defStat;
-
-        public Monster(int mhealth, String monname, int monAttackStat, int monDefStat){
-            this.health = mhealth;
-            this.name = monname;
-            this.attackStat = monAttackStat;
-            this.defStat = monDefStat;
-
-        }
-
-    }
-
-
     public static void main(String[] args) {
 
         input = new Scanner(System.in); //we create this here so we can close it off in the end
@@ -45,23 +28,23 @@ class Main{
 
         System.out.println("Game over");
     }
-    public static Monster createEasyMonster(int rando){
-        switch(rando){
-            case 1:
-                Monster mehlpie = new Monster(30,"Mehlpie", 30, 30);
-                return mehlpie;
-            case 2:
-                Monster warmadilla = new Monster(40,"Warmadilla", 20, 40);
-                return warmadilla;
-            case 3:
-                Monster blarghodon = new Monster(20,"Blarghodon",40,20);
-                return blarghodon;
-
-
-        }
-
-        return null;
-    }
+//    public static Monster createEasyMonster(int rando){
+//        switch(rando){
+//            case 1:
+//                Monster mehlpie = new Monster(30,"Mehlpie", 30, 30);
+//                return mehlpie;
+//            case 2:
+//                Monster warmadilla = new Monster(40,"Warmadilla", 20, 40);
+//                return warmadilla;
+//            case 3:
+//                Monster blarghodon = new Monster(20,"Blarghodon",40,20);
+//                return blarghodon;
+//
+//
+//        }
+//
+//        return null;
+//    }
 
     public static boolean startGameQuestion(){
 
@@ -98,7 +81,7 @@ class Main{
     }
 
     public static void spawnMonster(int input){
-        createEasyMonster(input);
+//        createEasyMonster(input);
         playerTurn();
     }
 
