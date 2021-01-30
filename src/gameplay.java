@@ -7,9 +7,26 @@ public class gameplay {
     private Monster mehlpie = new Monster(30, "Mehlpie", 3, 3, 5);
     public int playerhealth = hero.getHealth();
     public int playerAttack = hero.getAttack();
-    public int enemeyHealth = mehlpie.getHealth();
+    public int enemyHealth = mehlpie.getHealth();
     public int enemyAttack = mehlpie.getAttack();
     public String enemeyName = mehlpie.getName();
+//    public int playerMoney = hero.getMoney();
+
+    public void monsterTurn(){
+        if(enemyHealth<=0){
+            System.err.println("The monster has been defeated!");
+//            moneyReward();
+//            spawnMonster()
+        }
+
+        int multiplyer = (int) Math.floor(Math.random() * 3)+3;
+        int damage = enemyAttack+multiplyer;
+        playerhealth -= damage;
+        System.out.println(enemeyName+ " hit you for "+damage+" damage!");
+//        displayStats();
+        playerTurn();
+
+    }
 
     public void playerTurn(){
         if(playerhealth<=0){
@@ -29,7 +46,7 @@ public class gameplay {
                 int multiplyer = (int) Math.floor(Math.random()*3)+1;
                 int damage = playerAttack + multiplyer;
                 System.out.println("You did "+damage+" damage to "+enemeyName+"!");
-                enemeyHealth -= damage;
+                enemyHealth -= damage;
                 break;
 
             case 'h':
@@ -46,10 +63,18 @@ public class gameplay {
                 playerTurn();
                 break;
         }
-//        monsterTurn();
+        monsterTurn();
 
     }
 
+    public static void moneyRewards(){
+        int gains = (int) Math.floor(Math.random()*3)+5;
+        System.out.println("You collected "+gains+" gold!");
+        Hero.addMoney(gains);
+        int money = Hero.getMoney();
+        System.out.println("You have "+money+" gold.");
+
+    }
 
 
     public static void main(String[] args) {
