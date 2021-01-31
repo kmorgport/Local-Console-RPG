@@ -1,6 +1,6 @@
 public class Hero {
-    private int health;
-    private String name;
+    private static int health;
+    private static String name;
     private int attack;
     private int defense;
     private int magic;
@@ -16,23 +16,23 @@ public class Hero {
 
     }
 
-    public int getHealth(){
-        return this.health;
+    public static int getHealth(){
+        return Hero.health;
     }
 
     public static int getMoney(){
         return money;
     }
-    public static int addMoney(int mon){
-        return money += mon;
+    public static void addMoney(int mon){
+        Hero.money += mon;
     }
 
-    public static int subMoney(int mon){
-        return money -= mon;
+    public static void subMoney(int mon){
+        Hero.money -= mon;
     }
 
-    public void setHealth(int newHealth){
-        this.health = newHealth;
+    public static void setHealth(int newHealth){
+        Hero.health = newHealth;
     }
 
     public String getName(){
@@ -40,7 +40,7 @@ public class Hero {
     }
 
     public static void setName(String name){
-        this.name = name;
+        Hero.name = name;
     }
 
     public int getAttack(){

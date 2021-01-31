@@ -85,84 +85,8 @@
 //        playerTurn();
 //    }
 //
-//    public static void playerTurn(){
-//
-//        if(pHealth <= 0){
-//            clearConsole();
-//            System.err.println("You died!");
-//            running = false;
-//            return; //goes back to the loop
-//        }
 //
 //
-//        System.out.println("Attack : Heal : Run");
-//        answer = input.nextLine();
-//        if(answer.isEmpty()) { //check for empty string or it will crash
-//            playerTurn(); //recursion
-//        }
 //
-//        switch(answer.toLowerCase().charAt(0)){
-//            case 'a': //attack
-//                int dmg = (int) Math.floor(Math.random() * 3)+3;
-//                mHealth -= dmg; //do damage
-//
-//                System.out.println("You did " + dmg + " damage to the monster!");
-//                break;
-//
-//            case 'h': //heal
-//                int heal = (int) Math.floor(Math.random() * 3)+5;
-//                pHealth += heal; //heal
-//
-//                System.out.println("You healed yourself for " + heal + " points!");
-//                break;
-//
-//            case 'r': //run
-//                pHealth += 5; //do damage
-//                spawnMonster((int) Math.floor(Math.random() * 2)+1);
-//
-//            default: //invalid input
-//                playerTurn(); //recursion
-//                break;
-//        }
-//
-//        monsterTurn();
-//    }
-//
-//    public static void monsterTurn(){
-//
-//        if(mHealth <= 0){
-//
-//            System.err.println("The monster has been defeated!");
-//            moneyRewards();
-//            spawnMonster((int) Math.floor(Math.random() * 2)+1);
-//
-//        }
-//
-//        int dmg = (int) Math.floor(Math.random() * 3)+3;
-//        pHealth -= dmg;
-//
-//
-//        System.out.println("You were hit for " + dmg + " health!");
-//        displayStats();
-//        playerTurn();
-//
-//    }
-//
-//    public static void moneyRewards(){
-//        int gains = (int) Math.floor(Math.random()*3)+5;
-//        System.out.println("You collected "+gains+" gold!");
-//        money += gains;
-//        System.out.println("You have "+money+" gold.");
-//
-//    }
-//
-//    public static void displayStats(){
-//
-//        System.out.println("You have " + pHealth + " health left.");
-//    }
 
-//    public final static void clearConsole(){
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-//    }
 //}
