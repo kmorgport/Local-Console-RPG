@@ -1,24 +1,42 @@
 import java.util.Scanner;
 
 public class gameplay {
-    private Scanner input = new Scanner(System.in);
+    private static boolean running = true;
+    private static Scanner input = new Scanner(System.in);
     private String answer = input.nextLine();
-    private Hero hero = new Hero(30, 3, 3, 10);
+    private Hero hero = new Hero(50, 3, 3, 10);
     private Monster randomMonster;
     public int playerAttack = hero.getAttack();
+
+    public gameplay (){
+    }
+
+    public static boolean findState(){
+        return gameplay.running;
+    }
+
+    public static void setState(boolean state){
+        gameplay.running = state;
+    }
+
 
     public Monster generateEasyMonster(int rando){
         switch(rando){
             case 1:
-                return new Monster(50,"Kolem", 1,7,8);
+                return new Monster(20,"Kolem", 1,7,8);
             case 2:
-                return new Monster(35,"Warmadilla",2,4,5);
+                return new Monster(15,"Warmadilla",2,4,5);
             case 3:
-                return new Monster(25,"Blarghodon",4,2,6);
+                return new Monster(10,"Blarghodon",4,2,6);
             default:
-                return new Monster(30,"Mehlpie", 3,3,5);
+                return new Monster(12,"Mehlpie", 3,3,5);
         }
     }
+
+
+//    public static void openWorld(){
+//        //system asks to move, player moves , move monster spawn into here and set a random variable to monster spawning
+//    }
 
     public void askNameQuestion(){
 
@@ -37,6 +55,8 @@ public class gameplay {
     public void spawnMonster(){
         int random = (int) Math.floor(Math.random()*2)+1;
         randomMonster = generateEasyMonster(random);
+        String enemyName = randomMonster.getName();
+        System.out.println("A vicious "+ enemyName+" appeared!");
         playerTurn();
     }
 
@@ -66,8 +86,8 @@ public class gameplay {
         String enemeyName = randomMonster.getName();
         if(playerhealth<=0){
             clearConsole();
+            running = false;
             System.err.println("You died");
-//            running = false;
             return;
         }
         System.out.println("Attack : Heal : Run");
