@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class gameplay {
-    private static boolean state;
+    private boolean state;
     private static Scanner input = new Scanner(System.in);
     private String answer = input.nextLine();
     private Hero hero = new Hero(50, 3, 3, 10);
@@ -10,15 +10,15 @@ public class gameplay {
     private int playerHealth = hero.getHealth();
 
     public gameplay (boolean state){
-        gameplay.state = state;
+        this.state = state;
     }
 
-    public static boolean findState(){
-        return gameplay.state;
+    public boolean findState(){
+        return this.state;
     }
 
-    public static void setState(boolean state){
-        gameplay.state = state;
+    public void setState(boolean state){
+        this.state = state;
     }
 
 
@@ -67,7 +67,6 @@ public class gameplay {
         int enemyAttack = randomMonster.getAttack();
         String enemeyName = randomMonster.getName();
         if(enemyHealth<=0){
-            System.err.println("The monster has been defeated!");
             moneyRewards();
             spawnMonster();
         }
@@ -85,10 +84,7 @@ public class gameplay {
         String enemeyName = randomMonster.getName();
         if(playerHealth<=0){
             clearConsole();
-            boolean discontinue = gameplay.findState();
-            discontinue = false;
-            gameplay.setState(discontinue);
-            System.err.println("You died");
+            return;
         }
         System.out.println("Attack : Heal : Run");
         answer = input.nextLine();
@@ -130,6 +126,8 @@ public class gameplay {
         Hero.addMoney(gains);
         int money = Hero.getMoney();
         System.out.println("You have "+money+" gold.");
+        System.out.println("The monster has been defeated!");
+        System.out.println("");
 
     }
 
