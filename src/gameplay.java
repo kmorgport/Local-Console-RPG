@@ -1,29 +1,31 @@
 import java.util.Scanner;
 
 public class gameplay {
-    private static boolean running = true;
+    private static boolean state;
     private static Scanner input = new Scanner(System.in);
     private String answer = input.nextLine();
     private Hero hero = new Hero(50, 3, 3, 10);
     private Monster randomMonster;
     public int playerAttack = hero.getAttack();
+    private int playerHealth = hero.getHealth();
 
-    public gameplay (){
+    public gameplay (boolean state){
+        gameplay.state = state;
     }
 
     public static boolean findState(){
-        return gameplay.running;
+        return gameplay.state;
     }
 
     public static void setState(boolean state){
-        gameplay.running = state;
+        gameplay.state = state;
     }
 
 
     public Monster generateEasyMonster(int rando){
         switch(rando){
             case 1:
-                return new Monster(20,"Kolem", 1,7,8);
+                return new Monster(20,"Coalem", 1,7,8);
             case 2:
                 return new Monster(15,"Warmadilla",2,4,5);
             case 3:
@@ -61,7 +63,6 @@ public class gameplay {
     }
 
     public void monsterTurn(){
-        int playerhealth = Hero.getHealth();
         int enemyHealth = randomMonster.getHealth();
         int enemyAttack = randomMonster.getAttack();
         String enemeyName = randomMonster.getName();
@@ -73,22 +74,21 @@ public class gameplay {
 
         int multiplyer = (int) Math.floor(Math.random() * 3)+3;
         int damage = enemyAttack+multiplyer;
-        playerhealth -= damage;
-        System.out.println(enemeyName+ " hit you for "+damage+" damage!");
-        Hero.setHealth(playerhealth);
+        playerHealth -= damage;
+        System.out.println(enemeyName+ " hit you for "+damage+" damage!");;
         displayStats();
         playerTurn();
 
     }
 
     public void playerTurn(){
-        int playerhealth = Hero.getHealth();
         String enemeyName = randomMonster.getName();
-        if(playerhealth<=0){
+        if(playerHealth<=0){
             clearConsole();
-            running = false;
+            boolean discontinue = gameplay.findState();
+            discontinue = false;
+            gameplay.setState(discontinue);
             System.err.println("You died");
-            return;
         }
         System.out.println("Attack : Heal : Run");
         answer = input.nextLine();
@@ -108,14 +108,12 @@ public class gameplay {
 
             case 'h':
                 int heal = (int) Math.floor(Math.random() * 3)+5;
-                playerhealth += heal;
-                Hero.setHealth(playerhealth);
+                playerHealth += heal;
                 System.out.println("You healed yourself for " + heal + " points!");
                 break;
 
             case 'r':
-                playerhealth += 5;
-                Hero.setHealth(playerhealth);
+                playerHealth += 5;
 //                spawnMonster((int) Math.floor(Math.random() * 2)+1);
 
             default:
@@ -135,9 +133,7 @@ public class gameplay {
 
     }
 
-    public static void displayStats(){
-        int playerHealth = Hero.getHealth();
-
+    public void displayStats(){
         System.out.println("You have " + playerHealth + " health left.");
     }
 

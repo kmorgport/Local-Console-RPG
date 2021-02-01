@@ -6,7 +6,7 @@ class Main{
     public static void main(String[] args) {
 
         input = new Scanner(System.in); //we create this here so we can close it off in the end
-        gameplay Round = new gameplay(); // this will set the loop off
+        gameplay Round = new gameplay(true); // this will set the loop off
 
         System.out.println("Would you like to play a game (Y/N)?");
         String answer = input.nextLine();
@@ -18,7 +18,7 @@ class Main{
         }
 
         if(answer.toLowerCase().charAt(0) == 'y'){ //we check for only the first letter casted to lower case because its user friendly
-              gameplay.setState(true);
+              Round.setState(true);
         }else{
             state = false;
         }
