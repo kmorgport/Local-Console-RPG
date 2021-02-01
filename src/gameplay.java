@@ -84,7 +84,9 @@ public class gameplay {
         String enemeyName = randomMonster.getName();
         if(playerHealth<=0){
             clearConsole();
-            return;
+            System.err.println("You died");
+            System.out.println("Game over");
+            System.exit(1);
         }
         System.out.println("Attack : Heal : Run");
         answer = input.nextLine();
@@ -132,7 +134,11 @@ public class gameplay {
     }
 
     public void displayStats(){
-        System.out.println("You have " + playerHealth + " health left.");
+        if(playerHealth<=0){
+            System.out.println("You have 0 health left");
+        }else{
+            System.out.println("You have " + playerHealth + " health left.");
+        }
     }
 
     public final  void clearConsole(){
