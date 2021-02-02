@@ -6,7 +6,7 @@ public class Hero {
     private  static int magic;
     private static int money;
     private static int experience;
-    private static int level;
+    private static int level = 1;
 
 
     public Hero(int health, int attack, int defense, int magic){
@@ -25,17 +25,17 @@ public class Hero {
     public static int getMoney(){
         return money;
     }
-    public static void addMoney(int mon){
-        Hero.money += mon;
+    public static void addMoney(int mon){ Hero.money += mon;
     }
-    public static void subMoney(int mon){
+    public  void subMoney(int mon){
         Hero.money -= mon;
     }
 
     public static void addExp(int exp){Hero.experience += exp;}
-    public static  int getExp(){return experience;}
+    public static int getExp(){return experience;}
+    public static void resetExp(){Hero.experience = 0;}
 
-    public static void addLevel(){Hero.level ++;}
+    public static void addLevel(int lev){Hero.level = lev;}
     public static int getLevel(){return level;}
 
     public void setHealth(int newHealth){
@@ -53,11 +53,13 @@ public class Hero {
     public static int getAttack(){
         return attack;
     }
+    public static void setAttack(int att){Hero.attack = att;}
 
 
     public static int getDefense(){
         return defense;
     }
+    public static void setDefense(int def){Hero.defense = def;}
 
     public static int getMagic(){
         return magic;

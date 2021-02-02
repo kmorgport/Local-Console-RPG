@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class gameplay {
@@ -70,6 +71,7 @@ public class gameplay {
         if(enemyHealth<=0){
             moneyRewards();
             gainExp(monsterExperience);
+            levelUp();
             spawnMonster();
         }
 
@@ -82,15 +84,28 @@ public class gameplay {
 
     }
 
-    public static void gainExp(int exp){
+    public void gainExp(int exp){
         System.out.println("You earned "+exp+" experience points!");
         Hero.addExp(exp);
     }
 
-    public static void levelUp(){
+    public void levelUp(){
         int exp = Hero.getExp();
-        int currLev = Hero.getLevel();
         int currAttack = Hero.getAttack();
+        int currDefense = Hero.getDefense();
+        if(exp>=12){
+            int currLevel = Hero.getLevel();
+            currLevel+=1;
+            Hero.addLevel(currLevel);
+            currAttack++;
+            currDefense++;
+            System.out.println("You have leveled up to Level "+currLevel+"!");
+            System.out.println("Your attack has increased to "+currAttack+" and your defense has increased to "+currDefense+"!");
+            Hero.setAttack(currAttack);
+            Hero.setDefense(currDefense);
+            Hero.resetExp();
+
+        }
     }
 
     public void playerTurn(){
@@ -118,7 +133,7 @@ public class gameplay {
                 break;
 
             case 'h':
-                int heal = (int) Math.floor(Math.random() * 3)+5;
+                int heal = (int) Math.floor(Math.random() * 3)+10;
                 playerHealth += heal;
                 System.out.println("You healed yourself for " + heal + " points!");
                 break;
@@ -135,7 +150,7 @@ public class gameplay {
 
     }
 
-    public static void moneyRewards(){
+    public void moneyRewards(){
         int gains = (int) Math.floor(Math.random()*3)+5;
         System.out.println("You collected "+gains+" gold!");
         Hero.addMoney(gains);
@@ -159,9 +174,6 @@ public class gameplay {
         System.out.flush();
     }
 
-    public static void main(String[] args) {
-
-    }
 
 
 }
