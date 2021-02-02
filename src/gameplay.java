@@ -74,11 +74,14 @@ public class gameplay {
             levelUp();
             spawnMonster();
         }
-
+        int playerDef = Hero.getDefense();
         int multiplyer = (int) Math.floor(Math.random() * 3)+3;
         int damage = enemyAttack+multiplyer;
+//        if(playerDef == damage){
+//            System.out.println(enemeyName+" attacked you, but you blocked the attack!");
+//        }else{
+        System.out.println(enemeyName+ " hit you for "+damage+" damage!");
         playerHealth -= damage;
-        System.out.println(enemeyName+ " hit you for "+damage+" damage!");;
         displayStats();
         playerTurn();
 
@@ -126,6 +129,9 @@ public class gameplay {
             case 'a':
                 int multiplyer = (int) Math.floor(Math.random()*3)+1;
                 int damage = playerAttack + multiplyer;
+                int enemyDef = randomMonster.getDefense();
+//                if(enemyDef == damage){
+//                    System.out.println(enemeyName+" attacked you, but you blocked the attack!");
                 System.out.println("You did "+damage+" damage to "+enemeyName+"!");
                 int enemyHealth = randomMonster.getHealth();
                 enemyHealth -= damage;
