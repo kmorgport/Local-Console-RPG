@@ -66,8 +66,10 @@ public class gameplay {
         int enemyHealth = randomMonster.getHealth();
         int enemyAttack = randomMonster.getAttack();
         String enemeyName = randomMonster.getName();
+        int monsterExperience = randomMonster.getExperience();
         if(enemyHealth<=0){
             moneyRewards();
+            gainExp(monsterExperience);
             spawnMonster();
         }
 
@@ -78,6 +80,17 @@ public class gameplay {
         displayStats();
         playerTurn();
 
+    }
+
+    public static void gainExp(int exp){
+        System.out.println("You earned "+exp+" experience points!");
+        Hero.addExp(exp);
+    }
+
+    public static void levelUp(){
+        int exp = Hero.getExp();
+        int currLev = Hero.getLevel();
+        int currAttack = Hero.getAttack();
     }
 
     public void playerTurn(){
